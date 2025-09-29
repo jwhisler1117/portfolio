@@ -1,0 +1,13 @@
+img {
+  width: 200px;       
+  border-radius: 50%; 
+  display: block;    
+  margin: 20px auto; 
+}
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+
