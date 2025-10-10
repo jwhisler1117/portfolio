@@ -123,3 +123,23 @@ form button:focus {
   filter: brightness(0.95);
   outline: none;
 }
+
+/* Reset browser button styling */
+button {
+  appearance: none;        /* remove browser-specific styling */
+  -webkit-appearance: none;
+  background: var(--color-accent);
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  padding: 0.6em 1em;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Hover/focus state for the button */
+button:hover,
+button:focus {
+  filter: brightness(0.95);
+  outline: none;
+}
