@@ -68,3 +68,58 @@ nav a.current {
   padding-bottom: calc(0.5em - 0.4em);
   color: var(--color-accent);
 }
+/* Make form controls inherit the site typography */
+input, textarea, button {
+  font: inherit;
+}
+
+/* GRID LAYOUT FOR THE CONTACT FORM */
+form {
+  display: grid;
+  /* two columns: left fits label text, right fills remaining space */
+  grid-template-columns: auto 1fr;
+  gap: 1em;                 /* space between rows/columns */
+  align-items: start;       /* inputs align to top of their rows */
+  max-width: 48rem;         /* keeps the form from getting too wide */
+  margin-inline: auto;      /* center the form block */
+  text-align: left;         /* better for forms than centered */
+}
+
+/* Each <label> spans the whole row but uses the parent's columns via subgrid */
+form label {
+  display: grid;
+  grid-template-columns: subgrid;  /* adopt the 2 columns from the form */
+  grid-column: 1 / -1;             /* label row spans both columns */
+  gap: 0.75em;                      /* space between label text and control */
+}
+
+/* Place the input/textarea into the second column automatically */
+form input,
+form textarea {
+  /* no width:100% needed; 1fr column handles sizing */
+  padding: 0.6em 0.75em;
+  border: 1px solid #ccc;
+  border-radius: 0.375rem;
+  background: #fff;
+  font: inherit;                    /* ensure consistent typography */
+  box-sizing: border-box;
+}
+
+/* Submit button spans both columns, aligns nicely */
+form button {
+  grid-column: 1 / -1;              /* full row */
+  justify-self: start;              /* align to the left; use center if you prefer */
+  padding: 0.6em 1em;
+  border: 1px solid var(--color-accent);
+  background: var(--color-accent);
+  color: white;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+/* Button hover/focus */
+form button:hover,
+form button:focus {
+  filter: brightness(0.95);
+  outline: none;
+}
