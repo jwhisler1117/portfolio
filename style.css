@@ -2,9 +2,10 @@
 /* === BASIC PAGE STYLING === */
 /* === GLOBAL COLORS === */
 :root {
-  --color-accent: oklch(65% 50% 0); /* warm golden-orange accent */
+  --color-accent: oklch(60% 0.2 240); /
   accent-color: var(--color-accent);
 }
+
 
 body {
   font-family: Arial, sans-serif;
