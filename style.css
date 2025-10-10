@@ -1,13 +1,19 @@
-img {
-  width: 400px;       
-  border-radius: 50%; 
-  display: block;    
-  margin: 20px auto; 
-}
+/* Limit the width of text and center the page */
 body {
   font-family: Arial, sans-serif;
   text-align: center;
   background-color: #f9f9f9;
+  max-width: 100ch;     
+  margin: 0 auto;       
+  padding: 1rem;        
+  line-height: 1.5;     
 }
 
+/* Style images */
+img {
+  width: 400px;
+  border-radius: 50%;
+  display: block;
+  margin: 20px auto;
+}
 
