@@ -143,3 +143,38 @@ button:focus {
   filter: brightness(0.95);
   outline: none;
 }
+
+/* === PROJECTS GRID === */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  gap: 1em;
+  margin-block: 1rem;
+  text-align: left;
+}
+
+.projects article {
+  display: grid;
+  gap: 0.5em;
+  padding: 1em;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  background: #fff;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.projects article:hover {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+}
+
+.projects img {
+  max-width: 100%;
+  border-radius: 0.25rem;
+}
+
+.projects h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
