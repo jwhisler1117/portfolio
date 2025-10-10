@@ -1,5 +1,11 @@
 
 /* === BASIC PAGE STYLING === */
+/* === GLOBAL COLORS === */
+:root {
+  --color-accent: oklch(65% 50% 0); /* warm golden-orange accent */
+  accent-color: var(--color-accent);
+}
+
 body {
   font-family: Arial, sans-serif;
   text-align: center;
@@ -48,16 +54,17 @@ nav a {
   transition: background 0.3s;
 }
 
-/* Hover/focus states */
 nav a:hover,
 nav a:focus {
   background: #eef4ff;
-  color: #1f4f99;
+  color: var(--color-accent);
   outline: none;
+  border-bottom: 0.4em solid var(--color-accent);
+  padding-bottom: calc(0.5em - 0.4em);
 }
 
-/* Step 2.4: Highlight current page */
 nav a.current {
-  border-bottom: 0.4em solid oklch(80% 3% 200);
+  border-bottom: 0.4em solid var(--color-accent);
   padding-bottom: calc(0.5em - 0.4em);
+  color: var(--color-accent);
 }
