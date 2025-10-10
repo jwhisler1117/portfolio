@@ -1,4 +1,5 @@
 
+/* === BASIC PAGE STYLING === */
 body {
   font-family: Arial, sans-serif;
   text-align: center;
@@ -9,7 +10,7 @@ body {
   line-height: 1.5;     
 }
 
-/* Style images */
+/* === IMAGE STYLING === */
 img {
   width: 400px;
   border-radius: 50%;
@@ -17,3 +18,46 @@ img {
   margin: 20px auto;
 }
 
+/* === NAVIGATION BAR === */
+
+/* Step 2.1: Flatten list structure */
+nav ul,
+nav li {
+  display: contents;
+}
+
+/* Step 2.2: Flexbox layout for nav */
+nav {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid oklch(80% 3% 200);
+  margin-bottom: 1.5rem;
+  padding-block: 0.5rem;
+  gap: 1rem;
+}
+
+/* Step 2.3: Style links */
+nav a {
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  padding: 0.5em;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  transition: background 0.3s;
+}
+
+/* Hover/focus states */
+nav a:hover,
+nav a:focus {
+  background: #eef4ff;
+  color: #1f4f99;
+  outline: none;
+}
+
+/* Step 2.4: Highlight current page */
+nav a.current {
+  border-bottom: 0.4em solid oklch(80% 3% 200);
+  padding-bottom: calc(0.5em - 0.4em);
+}
