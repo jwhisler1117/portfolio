@@ -83,6 +83,33 @@ input, textarea, button {
   font: inherit;
 }
 
+/* Make form controls inherit the site font (add 'select' here too) */
+input, textarea, button, select {
+  font: inherit;
+}
+
+/* Top-right theme switcher */
+.color-scheme {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 0.85rem;
+  background: color-mix(in oklch, canvas, canvastext 5%);
+  border: 1px solid color-mix(in oklch, canvastext, canvas 85%);
+  border-radius: 0.375rem;
+  padding: 0.25em 0.5em;
+}
+
+/* Optional: make the <select> a bit neater */
+.color-scheme select {
+  margin-left: 0.4em;
+  padding: 0.15em 0.35em;
+  background: canvas;
+  color: canvastext;
+  border: 1px solid color-mix(in oklch, canvastext, canvas 85%);
+  border-radius: 0.25rem;
+}
+
 /* GRID LAYOUT FOR THE CONTACT FORM */
 form {
   display: grid;
