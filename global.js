@@ -24,7 +24,7 @@ const nav = document.createElement("nav");
 const list = document.createElement("ul");
 nav.append(list);
 
->
+
 document.body.prepend(nav);
 
 
