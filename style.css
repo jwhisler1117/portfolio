@@ -4,9 +4,13 @@
   accent-color: var(--color-accent);
 }
 
-/* Enable automatic light/dark */
+
 html { color-scheme: light dark; }
 
+html {
+  color-scheme: light dark;
+  transition: background 0.3s ease, color 0.3s ease;
+}
 /* === BASIC PAGE STYLING === */
 body {
   /* layout */
