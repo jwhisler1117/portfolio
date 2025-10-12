@@ -122,3 +122,27 @@ form?.addEventListener('submit', (event) => {
   
   location.href = url;
 });
+
+// === Contact form → Gmail compose in browser ===
+const contactForm = document.querySelector("#contact-form");
+
+contactForm?.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const data = new FormData(contactForm);
+  const to = "jwhisler@ucsd.edu";              // your address
+  const subject = data.get("subject") || "";
+  const body = data.get("body") || "";
+
+  // Build Gmail compose URL
+  const url = new URL("https://mail.google.com/mail/");
+  url.searchParams.set("view", "cm");          // compose
+  url.searchParams.set("fs", "1");             // full-screen compose
+  url.searchParams.set("to", to);
+  url.searchParams.set("su", subject);         // subject
+  url.searchParams.set("body", body);          // body (Gmail decodes %0A as newlines)
+  url.searchParams.set("tf", "1");             // focus compose
+
+  // Open Gmail compose in a new tab
+  window.open(url.toString(), "_blank");
+});
