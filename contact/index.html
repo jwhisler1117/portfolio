@@ -11,24 +11,20 @@
   <h1>Contact</h1>
   <p>Fill out the form below to send me a message:</p>
 
-  <form action="mailto:jwhisler@ucsd.edu" method="POST" enctype="text/plain">
-    <label>
-      Email:
-      <input type="email" name="email" required>
-    </label>
+<form action="mailto:jwhisler@ucsd.edu" method="GET">
+  <label>
+    Subject:
+    <input name="subject" required>
+  </label>
 
-    <label>
-      Subject:
-      <input name="subject" required>
-    </label>
+  <label>
+    Message:
+    <textarea name="body" rows="5" cols="40" required></textarea>
+  </label>
 
-    <label>
-      Message:
-      <textarea name="message" rows="5" cols="40" required></textarea>
-    </label>
+  <button>Send</button>
+</form>
 
-    <button>Send</button>
-  </form>
 
 <script type="module" src="../global.js"></script>
 
