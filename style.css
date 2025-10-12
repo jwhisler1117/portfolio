@@ -43,7 +43,7 @@ nav {
   gap: 1rem;
 }
 
-/* Step 2.3: Style links */
+
 nav a {
   flex: 1;
   text-decoration: none;
