@@ -24,11 +24,7 @@ const nav = document.createElement("nav");
 const list = document.createElement("ul");
 nav.append(list);
 
-/* ==========================
-   Step 4: Color scheme switch
-   ========================== */
 
-// Build a small label + select and insert at the very top of <body>
 const prefersDark = matchMedia("(prefers-color-scheme: dark)").matches;
 const autoLabel = `Automatic (${prefersDark ? "Dark" : "Light"})`;
 
@@ -46,15 +42,15 @@ document.body.insertAdjacentHTML(
 `
 );
 
-// Helper to apply the scheme to <html>
+
 function setColorScheme(value) {
   document.documentElement.style.setProperty("color-scheme", value);
 }
 
-// Get the select and wire events
+
 const select = document.querySelector("#color-scheme-select");
 
-// On load: use saved preference if present, else default to Automatic
+
 const saved = localStorage.colorScheme;
 if (saved) {
   setColorScheme(saved);
@@ -64,11 +60,11 @@ if (saved) {
   select.value = "light dark";
 }
 
-// When user changes the dropdown, apply + persist
+
 select.addEventListener("input", (event) => {
-  const value = event.target.value;            // "light dark" | "light" | "dark"
+  const value = event.target.value;            
   setColorScheme(value);
-  localStorage.colorScheme = value;            // persist across pages & reloads
+  localStorage.colorScheme = value;            
   console.log("color scheme changed to", value);
 });
 
@@ -104,3 +100,25 @@ for (const { url: rawUrl, title } of PAGES) {
   list.append(li);
 }
 
+
+const form = document.querySelector('form[action^="mailto:"]');
+
+form?.addEventListener('submit', (event) => {
+  event.preventDefault(); 
+
+  const data = new FormData(form);
+  const action = form.getAttribute('action'); 
+
+ 
+  const params = [];
+  for (const [name, value] of data) {
+    if (!value) continue;
+    params.push(`${encodeURIComponent(name)}=${encodeURIComponent(value)}`);
+  }
+
+  
+  const url = params.length ? `${action}?${params.join('&')}` : action;
+
+  
+  location.href = url;
+});
