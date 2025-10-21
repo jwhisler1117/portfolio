@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Lorem ipsum",
+    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  }
+]
+
+[
+  {
+    "title": "Claims Insights Dashboard",
+    "image": "images/dashboard.png",
+    "description": "Built an interactive dashboard in Python to analyze subrogation performance."
+  },
+  {
+    "title": "Auto Recovery Predictor",
+    "image": "images/predictor.png",
+    "description": "A machine learning model predicting recovery likelihood using XGBoost."
+  }
+]
