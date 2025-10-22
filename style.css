@@ -281,3 +281,49 @@ button:focus { filter: brightness(0.95); outline: none; }
 
 /* === HEADING DEFAULTS === */
 h1, h2, h3, h4, h5, h6 { text-wrap: balance; line-height: 1.1; }
+
+/* === GitHub profile card === */
+#profile-stats .profile-card {
+  max-width: 40rem;
+  margin: 0.5rem auto 1.5rem;
+  padding: 1rem;
+  border: 1px solid color-mix(in oklch, canvastext, canvas 85%);
+  background: canvas;
+  border-radius: 0.5rem;
+}
+
+#profile-stats .profile-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem 1rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+#profile-stats .profile-header img {
+  border-radius: 50%;
+  display: block;
+}
+
+#profile-stats .profile-id a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+#profile-stats .profile-id a:hover { text-decoration: underline; }
+
+/* Definition list grid: 4 equal columns */
+#profile-stats .profile-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.25rem 1rem;
+  justify-items: center;
+  margin: 0;
+}
+#profile-stats .profile-grid dt {
+  grid-row: 1;
+  font-weight: 700;
+}
+#profile-stats .profile-grid dd {
+  grid-row: 2;
+  margin: 0;
+}

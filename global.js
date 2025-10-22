@@ -222,3 +222,9 @@ export function renderProjects(projects, containerElement, headingLevel = "h2") 
     containerElement.appendChild(article);
   }
 }
+
+// === GitHub API helper ===
+export async function fetchGitHubData(username) {
+  // Encode the username for safety and fetch public profile data
+  return fetchJSON(`https://api.github.com/users/${encodeURIComponent(username)}`);
+}
