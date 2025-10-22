@@ -240,3 +240,8 @@ button:focus { filter: brightness(0.95); outline: none; }
 
 /* Heading defaults */
 h1, h2, h3, h4, h5, h6 { text-wrap: balance; line-height: 1.1; }
+
+.projects article {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
