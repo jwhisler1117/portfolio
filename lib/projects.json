@@ -1,17 +1,74 @@
 [
   {
-    "title": "Lorem ipsum",
-    "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    "title": "GSOD Climate Analysis",
+    "year": "2025",
+    "image": "https://raw.githubusercontent.com/jwhisler1117/GSOD-Climate-Analysis/main/screenshot.png",
+    "description": "Analyzed global surface observation data using Python and Pandas; visualized temperature trends and anomalies by region."
   },
   {
-    "title": "Claims Insights Dashboard",
+    "title": "Lab 0 – GitHub Pages Portfolio",
+    "year": "2024",
+    "image": "https://raw.githubusercontent.com/jwhisler1117/lab-0/main/preview.png",
+    "description": "Initial lab for creating and deploying a personal website using GitHub Pages. Introduced modular JavaScript and JSON-driven design."
+  },
+  {
+    "title": "Subrogation Insights Dashboard",
+    "year": "2023",
     "image": "images/dashboard.png",
-    "description": "Built an interactive dashboard in Python to analyze subrogation performance."
+    "description": "Interactive Power BI dashboard used to track and visualize subrogation performance and recovery metrics."
   },
   {
     "title": "Auto Recovery Predictor",
+    "year": "2024",
     "image": "images/predictor.png",
-    "description": "A machine learning model predicting recovery likelihood using XGBoost."
+    "description": "Machine learning model predicting recovery likelihood using XGBoost, trained on historical claim outcomes."
+  },
+  {
+    "title": "Weather Trends Visualization",
+    "year": "2025",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Data visualization project displaying weather pattern changes using D3.js and animated transitions."
+  },
+  {
+    "title": "Claims KPI Tracker",
+    "year": "2022",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Developed internal tool for tracking claims KPIs and performance metrics across multiple teams."
+  },
+  {
+    "title": "Pug Photo Gallery",
+    "year": "2023",
+    "image": "images/Molly.jpg",
+    "description": "A fun image gallery web app showcasing photos of my pug, Molly, using JavaScript and CSS Grid."
+  },
+  {
+    "title": "Data Science Capstone",
+    "year": "2025",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "UCSD Master of Data Science capstone project integrating Python, SQL, and cloud APIs for large-scale data analysis."
+  },
+  {
+    "title": "Insurance Risk Model",
+    "year": "2021",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Developed predictive model for risk classification using logistic regression and historical claims data."
+  },
+  {
+    "title": "Portfolio v2 Refactor",
+    "year": "2025",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Refactored personal website into a modular, data-driven architecture using JSON and reusable JavaScript components."
+  },
+  {
+    "title": "Subrogation Automation Script",
+    "year": "2022",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Python automation for claims subrogation workflows, reducing manual data entry and improving recovery times."
+  },
+  {
+    "title": "Visualization Lab 3 – Data Storytelling",
+    "year": "2024",
+    "image": "https://dsc106.com/labs/lab03/images/empty.svg",
+    "description": "Explored data storytelling principles and designed an interactive D3.js narrative visualization using lab datasets."
   }
 ]
