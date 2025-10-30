@@ -215,9 +215,20 @@ export function renderProjects(projects, containerElement, headingLevel = "h2") 
       article.appendChild(img);
     }
 
-    const p = document.createElement("p");
-    p.textContent = project.description ?? "";
-    article.appendChild(p);
+const infoDiv = document.createElement("div");
+
+const p = document.createElement("p");
+p.textContent = project.description ?? "";
+infoDiv.appendChild(p);
+
+if (project.year) {
+  const yearEl = document.createElement("p");
+  yearEl.textContent = project.year;
+  yearEl.classList.add("project-year");
+  infoDiv.appendChild(yearEl);
+}
+
+article.appendChild(infoDiv);
 
     containerElement.appendChild(article);
   }

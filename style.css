@@ -327,3 +327,11 @@ h1, h2, h3, h4, h5, h6 { text-wrap: balance; line-height: 1.1; }
   grid-row: 2;
   margin: 0;
 }
+
+.project-year {
+  color: gray;
+  font-family: Baskerville, "Times New Roman", serif;
+  font-variant-numeric: oldstyle-nums;
+  font-size: 0.9rem;
+  margin-top: 0.25em;
+}
