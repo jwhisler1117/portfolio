@@ -26,6 +26,7 @@ const PAGES = [
   { url: "projects/", title: "Projects" },
   { url: "contact/",  title: "Contact" },
   { url: "resume/",   title: "Resume" },
+  { url: "meta/",     title: "Meta" },          // ← add this line
   { url: "https://github.com/jwhisler1117", title: "GitHub" }, // external
 ];
 
