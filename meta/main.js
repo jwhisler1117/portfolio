@@ -1,6 +1,9 @@
 // meta/main.js
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 
+
+let xScale, yScale;
+
 /* ---------- load CSV with row conversion ---------- */
 async function loadData() {
   const data = await d3.csv('loc.csv', (row) => ({
@@ -31,6 +34,55 @@ function processCommits(data) {
     });
     return ret;
   });
+}
+
+function isCommitSelected(selection, commit) {
+  if (!selection) return false;
+  // selection is [[x0,y0],[x1,y1]] in SVG (pixel) coords
+  const [[x0, y0], [x1, y1]] = selection;
+  const sx = xScale(commit.datetime);
+  const sy = yScale(commit.hourFrac);
+  return x0 <= sx && sx <= x1 && y0 <= sy && sy <= y1;
+}
+
+function renderSelectionCount(selection, commits) {
+  const countEl = document.querySelector('#selection-count');
+  const selected = selection ? commits.filter(d => isCommitSelected(selection, d)) : [];
+
+  if (selected.length === 0) {
+    countEl.hidden = true;
+  } else {
+    countEl.hidden = false;
+    countEl.textContent = `${selected.length} commit${selected.length === 1 ? '' : 's'} selected`;
+  }
+
+  return selected;
+}
+
+
+function renderLanguageBreakdown(selection, commits) {
+  const selected = selection ? commits.filter(d => isCommitSelected(selection, d)) : [];
+  const container = document.getElementById('language-breakdown');
+
+  if (selected.length === 0) { container.innerHTML = ''; return; }
+
+  // flatten the lines from selected commits
+  const lines = selected.flatMap(d => d.lines);
+
+  // count lines per language/type
+  const breakdown = d3.rollup(
+    lines,
+    v => v.length,
+    d => d.type
+  );
+
+  // Render simple DL
+  container.innerHTML = '';
+  for (const [language, count] of breakdown) {
+    const proportion = count / lines.length;
+    const pct = d3.format('.1~%')(proportion);
+    container.innerHTML += `<dt>${language}</dt><dd>${count} lines (${pct})</dd>`;
+  }
 }
 
 /* ---------- summary stats ---------- */
@@ -118,7 +170,6 @@ function updateTooltipPosition(event) {
   tooltip.style.top = `${y}px`;
 }
 
-/* ---------- scatterplot (size = lines edited) ---------- */
 function renderScatterPlot(_data, commits) {
   const width = 1000, height = 600;
   const margin = { top: 10, right: 10, bottom: 30, left: 60 };
@@ -136,23 +187,23 @@ function renderScatterPlot(_data, commits) {
     height: height - margin.top - margin.bottom,
   };
 
-  // scales
-  const xScale = d3.scaleTime()
+  // --- scales (assign to globals so helpers can use them)
+  xScale = d3.scaleTime()
     .domain(d3.extent(commits, d => d.datetime))
     .range([usable.left, usable.right])
     .nice();
 
-  const yScale = d3.scaleLinear()
+  yScale = d3.scaleLinear()
     .domain([0, 24])
     .range([usable.bottom, usable.top]);
 
-  // gridlines
+  // --- gridlines BEFORE axes
   const grid = svg.append('g')
     .attr('class', 'gridlines')
     .attr('transform', `translate(${usable.left},0)`);
   grid.call(d3.axisLeft(yScale).tickFormat('').tickSize(-usable.width));
 
-  // axes
+  // --- axes
   const xAxis = d3.axisBottom(xScale);
   const yAxis = d3.axisLeft(yScale)
     .ticks(12)
@@ -171,30 +222,19 @@ function renderScatterPlot(_data, commits) {
     .attr('transform', `translate(${usable.left},0)`)
     .call(yAxis);
 
-  // color by time-of-day (cooler night, warmer day)
+  // --- color & radius (Step 4 you already added)
   const warm = d3.scaleSequential([0, 24], d3.interpolateWarm);
   const cool = d3.scaleSequential([0, 24], d3.interpolateCool);
-  const blendedColor = (hour) => (hour < 6 || hour > 20) ? cool(hour) : warm(hour);
+  const blendedColor = h => (h < 6 || h > 20) ? cool(h) : warm(h);
 
-  // --- STEP 4: radius scale (sqrt for perceptual area) ---
   let [minLines, maxLines] = d3.extent(commits, d => d.totalLines ?? 0);
-  // guard against equal/undefined values
-  if (!(Number.isFinite(minLines) && Number.isFinite(maxLines))) {
-    minLines = 0; maxLines = 1;
-  }
-  if (minLines === maxLines) {
-    // avoid zero range; give a tiny spread
-    minLines = 0;
-  }
+  if (!(Number.isFinite(minLines) && Number.isFinite(maxLines))) { minLines = 0; maxLines = 1; }
+  if (minLines === maxLines) minLines = 0;
 
-  const rScale = d3.scaleSqrt()
-    .domain([minLines, maxLines])
-    .range([2, 30]); // tweak if you want smaller/larger dots
+  const rScale = d3.scaleSqrt().domain([minLines, maxLines]).range([2, 30]);
 
-  // sort so LARGE dots draw first, SMALL dots last (on top → easier to hover)
+  // --- dots (big first, small last = small on top)
   const sortedCommits = d3.sort(commits, d => -d.totalLines);
-
-  // dots + tooltip events
   const dots = svg.append('g').attr('class', 'dots');
 
   dots.selectAll('circle')
@@ -211,15 +251,38 @@ function renderScatterPlot(_data, commits) {
       updateTooltipVisibility(true);
       updateTooltipPosition(event);
     })
-    .on('mousemove', (event) => {
-      updateTooltipPosition(event);
-    })
+    .on('mousemove', (event) => updateTooltipPosition(event))
     .on('mouseleave', (event) => {
       d3.select(event.currentTarget).style('fill-opacity', 0.7);
       updateTooltipVisibility(false);
     })
-    .append('title') // native fallback
+    .append('title')
     .text(d => `${d.author ?? 'Unknown'} • ${d.datetime.toLocaleString()} • ${d.totalLines} line(s)`);
+
+  // --- STEP 5: BRUSH
+  const brush = d3.brush()
+    .extent([[usable.left, usable.top], [usable.right, usable.bottom]])
+    .on('start brush end', brushed);
+
+// add brush
+svg.call(brush);
+
+
+svg.select('.overlay').lower(); 
+dots.raise();                   
+
+
+  function brushed(event) {
+    const sel = event.selection;
+
+    // style selected dots
+    dots.selectAll('circle')
+      .classed('selected', d => isCommitSelected(sel, d));
+
+    // update readouts
+    renderSelectionCount(sel, commits);
+    renderLanguageBreakdown(sel, commits);
+  }
 }
 
 
