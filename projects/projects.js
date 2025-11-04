@@ -15,9 +15,9 @@ function updateTitle(count) {
   if (titleEl) titleEl.textContent = `Projects (${count})`;
 }
 
-// ----- Search + selection state -----
+
 let currentQuery = "";
-let selectedLabel = null; // e.g., "2025" when a wedge/legend is selected
+let selectedLabel = null; 
 
 function filterByQuery(all, q) {
   const query = (q || "").trim().toLowerCase();
@@ -34,7 +34,7 @@ function applyFilterAndRender() {
   renderProjects(visible, container, "h2");
   updateTitle(visible.length);
 
-  // ✅ Keep full distribution in the pie; just highlight selected
+  
   renderPieChart(afterSearch);
 }
 
