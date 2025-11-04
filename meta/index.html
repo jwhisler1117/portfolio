@@ -1,3 +1,4 @@
+<!-- meta/index.html -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,18 +7,37 @@
   <title>Meta • Codebase Stats</title>
   <link rel="stylesheet" href="../style.css" />
 </head>
-<body class="resume-page">
+<body>
   <h1>Codebase Meta-Analysis</h1>
   <p>This page will visualize stats about our project files (LOC, file types, etc.).</p>
 
-  <section>
-    <h2>Latest CSV snapshot</h2>
-    <p>After running the analyzer, we’ll preview the CSV here and build charts.</p>
-    <div id="csv-preview" aria-live="polite"></div>
-  </section>
+  <h2>Summary stats</h2>
+  <div id="stats"></div>
+<h2>Commits by time of day</h2>
+<div id="chart"></div>
 
-  <!-- site-wide nav + theme switch -->
+<dl id="commit-tooltip" class="info tooltip" hidden>
+  <dt>Commit</dt>
+  <dd>
+    <a href="" id="commit-link" target="_blank" rel="noopener"></a>
+  </dd>
+
+  <dt>Date</dt>
+  <dd id="commit-date"></dd>
+
+  <dt>Time</dt>
+  <dd id="commit-time"></dd>
+
+  <dt>Author</dt>
+  <dd id="commit-author"></dd>
+
+  <dt>Lines edited</dt>
+  <dd id="commit-lines"></dd>
+</dl>
+
+
+
   <script type="module" src="../global.js"></script>
-  <!-- we’ll add a meta.js later when we start visualizing -->
+  <script type="module" src="./main.js"></script>
 </body>
 </html>
