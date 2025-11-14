@@ -204,10 +204,24 @@ export function renderProjects(projects, containerElement, headingLevel = "h2") 
   for (const project of projects) {
     const article = document.createElement("article");
 
+    // ---- Title (clickable if URL present) ----
     const h = document.createElement(headingLevel);
-    h.textContent = project.title ?? "Untitled project";
+    const titleText = project.title ?? "Untitled project";
+
+    if (project.url) {
+      const link = document.createElement("a");
+      link.href = project.url;
+      link.textContent = titleText;
+      link.target = "_blank";            // open in new tab
+      link.rel = "noopener noreferrer";  // safety best practice
+      h.appendChild(link);
+    } else {
+      h.textContent = titleText;
+    }
+
     article.appendChild(h);
 
+    // ---- Image ----
     if (project.image) {
       const img = document.createElement("img");
       img.src = project.image;
@@ -216,24 +230,25 @@ export function renderProjects(projects, containerElement, headingLevel = "h2") 
       article.appendChild(img);
     }
 
-const infoDiv = document.createElement("div");
+    // ---- Description + year ----
+    const infoDiv = document.createElement("div");
 
-const p = document.createElement("p");
-p.textContent = project.description ?? "";
-infoDiv.appendChild(p);
+    const p = document.createElement("p");
+    p.textContent = project.description ?? "";
+    infoDiv.appendChild(p);
 
-if (project.year) {
-  const yearEl = document.createElement("p");
-  yearEl.textContent = project.year;
-  yearEl.classList.add("project-year");
-  infoDiv.appendChild(yearEl);
-}
+    if (project.year) {
+      const yearEl = document.createElement("p");
+      yearEl.textContent = project.year;
+      yearEl.classList.add("project-year");
+      infoDiv.appendChild(yearEl);
+    }
 
-article.appendChild(infoDiv);
-
+    article.appendChild(infoDiv);
     containerElement.appendChild(article);
   }
 }
+
 
 // === GitHub API helper ===
 export async function fetchGitHubData(username) {

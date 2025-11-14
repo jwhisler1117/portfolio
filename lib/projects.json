@@ -5,6 +5,16 @@
     "image": "https://raw.githubusercontent.com/jwhisler1117/GSOD-Climate-Analysis/main/screenshot.png",
     "description": "Analyzed global surface observation data using Python and Pandas; visualized temperature trends and anomalies by region."
   },
+
+{
+  "title": "Bike Map",
+  "year": "2025",
+  "image": "https://raw.githubusercontent.com/jwhisler1117/Bike-Map/main/screenshot.png",
+  "description": "Interactive web map visualizing bike routes using Leaflet.js and GeoJSON data.",
+  "url": "https://jwhisler1117.github.io/Bike-Map/"
+},
+
+
   {
     "title": "Lab 0 – GitHub Pages Portfolio",
     "year": "2024",
