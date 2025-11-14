@@ -9,8 +9,8 @@
 {
   "title": "Bike Map",
   "year": "2025",
-  "image": "https://raw.githubusercontent.com/jwhisler1117/Bike-Map/main/screenshot.png",
-  "description": "Interactive web map visualizing bike routes using Leaflet.js and GeoJSON data.",
+  "image": "https://raw.githubusercontent.com/jwhisler1117/Bike-Map/main/BikeMap.png",
+  "description": "Interactive web map visualizing bike routes in Boston.",
   "url": "https://jwhisler1117.github.io/Bike-Map/"
 },
 
