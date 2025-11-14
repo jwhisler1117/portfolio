@@ -2,8 +2,9 @@
   {
     "title": "GSOD Climate Analysis",
     "year": "2025",
-    "image": "https://raw.githubusercontent.com/jwhisler1117/GSOD-Climate-Analysis/main/screenshot.png",
-    "description": "Analyzed global surface observation data using Python and Pandas; visualized temperature trends and anomalies by region."
+    "image":"https://raw.githubusercontent.com/jwhisler1117/GSOD-Climate-Analysis/Main/Climate.png",
+    "description": "Analyzed global surface observation data using Python and Pandas; visualized temperature trends and anomalies by region.",
+    "url": "https://github.com/jwhisler1117/GSOD-Climate-Analysis"
   },
 
 {
