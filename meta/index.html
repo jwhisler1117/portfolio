@@ -30,14 +30,14 @@
   <h2>Summary Stats</h2>
   <div id="stats"></div>
 
-  <!-- SCROLLY 1: story + scatter plot -->
+  <!-- === SCROLLY CONTAINER (Step 3.1) === -->
   <div id="scrolly-1">
-    <!-- Left column: narrative text (one .step per commit) -->
+    <!-- LEFT: story text (filled by JS in Step 3.2) -->
     <div id="scatter-story">
-      <!-- JS will inject .step elements here -->
+      <!-- commit steps go here -->
     </div>
 
-    <!-- Right column: sticky scatter plot + brush readouts -->
+    <!-- RIGHT: scatter plot + brush info -->
     <div id="scatter-plot">
       <h2>Commits by Time of Day</h2>
       <div id="chart"></div>
@@ -47,7 +47,7 @@
     </div>
   </div>
 
-  <!-- Step 2: file unit visualization moved to bottom (after scrolly) -->
+  <!-- File unit visualization (Step 2) -->
   <dl id="files"></dl>
 
   <!-- Tooltip floats independently -->
