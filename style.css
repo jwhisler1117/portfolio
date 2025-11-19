@@ -336,6 +336,7 @@ h1, h2, h3, h4, h5, h6 { text-wrap: balance; line-height: 1.1; }
   margin-top: 0.25em;
 }
 
+/* Pie chart area */
 #projects-pie-plot {
   max-width: 20em;
   margin-block: 2em;
@@ -400,11 +401,10 @@ h1, h2, h3, h4, h5, h6 { text-wrap: balance; line-height: 1.1; }
   margin-left: 0.25em;
 }
 
-
 .searchBar {
   display: block;
-  width: 100%;          
-  max-width: 40rem;     
+  width: 100%;
+  max-width: 40rem;
   box-sizing: border-box;
   margin: 0.75rem auto 1rem;
   padding: 0.75rem 1rem;
@@ -425,6 +425,7 @@ h1, h2, h3, h4, h5, h6 { text-wrap: balance; line-height: 1.1; }
 .selected { --color: oklch(60% 45% 0) !important; }      /* pick any distinct color */
 #projects-pie-plot path.selected { fill: var(--color) !important; }
 .legend-item.selected { outline: 2px solid var(--color); border-radius: 0.375rem; }
+
 /* Summary stats list */
 .stats {
   display: grid;
@@ -443,6 +444,73 @@ h1, h2, h3, h4, h5, h6 { text-wrap: balance; line-height: 1.1; }
 }
 .stats dd {
   margin: 0;
+}
+
+/* === Commit time slider controls (Lab 8 Step 1.1) === */
+.commit-controls {
+  max-width: 40rem;
+  margin: 1rem auto 1.5rem;
+}
+.commit-controls label {
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+#commit-progress {
+  flex: 1;
+}
+#commit-slider-time {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9rem;
+  color: color-mix(in oklch, canvastext, canvas 35%);
+}
+
+/* === Step 2: file list + unit visualization === */
+#files {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 3fr);
+  gap: 0.5rem 1rem;
+  max-width: 60rem;
+  margin: 1.5rem auto 2rem;
+  text-align: left;
+}
+#files > div {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  align-items: flex-start;
+}
+#files dt {
+  grid-column: 1;
+  margin: 0;
+}
+#files dd {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 0.15em;
+  padding-top: 0.6em;
+  margin: 0;
+}
+#files dt code {
+  font-size: 0.95rem;
+}
+#files dt small {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* Unit visualization dot */
+.loc {
+  display: flex;
+  width: 0.5em;
+  aspect-ratio: 1;
+  background: var(--color, steelblue);
+  border-radius: 50%;
 }
 
 /* Scatterplot gridlines */
@@ -485,13 +553,22 @@ dl.info[hidden]:not(:hover, :focus-within) {
   visibility: hidden;
 }
 
-/* Smooth circle hover scaling (from center) */
-circle {
-  transition: 200ms;
+/* Smooth circle hover + entry animation (scatterplot) */
+#chart circle {
+  transition:
+    transform 200ms ease,
+    fill-opacity 200ms ease,
+    r calc(var(--r, 10) * 100ms);
   transform-origin: center;
   transform-box: fill-box;
+  @starting-style {
+    r: 0;
+  }
 }
-circle:hover { transform: scale(1.5); }
+
+#chart circle:hover {
+  transform: scale(1.5);
+}
 
 /* Brush selection rectangle (optional “marching ants”) */
 @keyframes marching-ants { to { stroke-dashoffset: -8; } }
