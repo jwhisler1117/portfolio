@@ -11,7 +11,7 @@
   <h1>Meta-Analysis</h1>
   <p>This page will visualize stats about our project files (LOC, file types, etc.).</p>
 
-  <!-- Commit time slider controls (Lab 8 Step 1.1) -->
+  <!-- Commit time slider controls -->
   <div class="commit-controls">
     <label for="commit-progress">
       Show commits until:
@@ -22,34 +22,35 @@
         max="100"
         value="100"
       />
-      <!-- renamed to avoid conflict with tooltip's #commit-time -->
+      <!-- NOTE: different id than tooltip's #commit-time -->
       <time id="commit-slider-time"></time>
     </label>
   </div>
 
-  <!-- Step 2: file/unit visualization container -->
-  <dl id="files">
-    <!-- structure D3 will create:
-    <div>
-      <dt><code>path/to/file.js</code><small>123 lines</small></dt>
-      <dd>
-        <div class="loc"></div>
-        <div class="loc"></div>
-        ...
-      </dd>
-    </div>
-    -->
-  </dl>
-
   <h2>Summary Stats</h2>
   <div id="stats"></div>
 
-  <h2>Commits by Time of Day</h2>
-  <div id="chart"></div>
+  <!-- SCROLLY 1: story + scatter plot -->
+  <div id="scrolly-1">
+    <!-- Left column: narrative text (one .step per commit) -->
+    <div id="scatter-story">
+      <!-- JS will inject .step elements here -->
+    </div>
 
-  <p id="selection-count" hidden></p>
-  <dl id="language-breakdown" class="stats"></dl>
+    <!-- Right column: sticky scatter plot + brush readouts -->
+    <div id="scatter-plot">
+      <h2>Commits by Time of Day</h2>
+      <div id="chart"></div>
 
+      <p id="selection-count" hidden></p>
+      <dl id="language-breakdown" class="stats"></dl>
+    </div>
+  </div>
+
+  <!-- Step 2: file unit visualization moved to bottom (after scrolly) -->
+  <dl id="files"></dl>
+
+  <!-- Tooltip floats independently -->
   <dl id="commit-tooltip" class="info tooltip" hidden>
     <dt>Commit</dt>
     <dd>
